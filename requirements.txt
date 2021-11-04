@@ -1,0 +1,9 @@
+# ProjectHeatBlast/ReverseProxy/__init__.py: 1
+# ProjectHeatBlast/ReverseProxy/mod_request_handlers/controller.py: 1
+# ProjectHeatBlast/ReverseProxy/mod_request_handlers/router.py: 1
+Flask == 2.0.2
+
+# ProjectHeatBlast/ReverseProxy/mod_request_handlers/controller.py: 2
+# ProjectHeatBlast/ReverseProxy/mod_request_handlers/router.py: 2
+# ProjectHeatBlast/ReverseProxy/mod_request_handlers/utils.py: 2
+requests == 2.22.0
