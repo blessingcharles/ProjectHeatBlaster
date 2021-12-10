@@ -7,7 +7,7 @@ from ReverseProxy.mod_request_handlers.utils import exclude_headers
 def get_handler(url : str) -> Response:
     try:
         response = requests.get(url)
-       
+        print(url)
         headers = exclude_headers(response)
         f_response = Response(response.content , response.status_code , headers)
         
@@ -42,7 +42,7 @@ def put_handler(url : str) -> Response:
 def delete_handler(url : str) -> Response:
 
     try:
-        response = requests.post(url , json=request.get_json())
+        response = requests.delete(url , json=request.get_json())
         headers = exclude_headers(response)
         f_response = Response(response.content , response.status_code , headers)
         return f_response
