@@ -4,3 +4,7 @@ LOGFILE_CONFIG = {
     "warning_logfilepath":"/home/th3h04x/blaster/warning.log",
     "critical_logfilepath":"/home/th3h04x/blaster/critical.log"
 }
+
+UPSTREAM_BACKENDSERVERS = [ 
+    "http://localhost:5000"
+]
