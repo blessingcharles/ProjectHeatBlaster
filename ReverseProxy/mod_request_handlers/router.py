@@ -26,12 +26,11 @@ def request_handler(path : str ="/") -> Response:
 
 
     server_name = l_balancer.balance()
-    
+
     real_url = f"{server_name}{path}"
 
     # routing to particular http method controller
     if request.method == "GET":
-        print(request , "--------------------")
         return get_handler(real_url)
 
     elif request.method == "POST":
