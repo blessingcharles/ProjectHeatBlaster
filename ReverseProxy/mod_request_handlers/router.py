@@ -19,10 +19,17 @@ def request_handler(path : str ="/") -> Response:
 
     # Trained Ml models to block requests if they are malicious
     if HTTP_CONFIG["block_bad_useragents"] :
-        block_baduseragents(request)   # layer1
+        is_bad_ua = block_baduseragents(request)   # layer1
+
+        if is_bad_ua:
+            return Response("Request Blocked",500)
     
     if HTTP_CONFIG["block_malicious_payloads"] :
-        block_badrequests(request)     # layer2
+        is_malicious_req = block_badrequests(request)     # layer2
+
+        if is_malicious_req:
+            pass
+
 
 
     server_name = l_balancer.balance()

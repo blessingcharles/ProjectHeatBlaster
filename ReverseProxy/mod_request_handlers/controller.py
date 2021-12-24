@@ -6,11 +6,10 @@ from ReverseProxy.mod_request_handlers.utils import exclude_headers
 
 def get_handler(url : str) -> Response:
     try:
-        response = requests.get(url)
+        response = requests.get(url , cookies=request.cookies)
         print(url)
         headers = exclude_headers(response)
         f_response = Response(response.content , response.status_code , headers)
-        
         return f_response
     except Exception as e:
         # current redirected server failed 
@@ -20,7 +19,7 @@ def get_handler(url : str) -> Response:
 def post_handler(url : str) -> Response:
 
     try:
-        response = requests.post(url , json=request.get_json())
+        response = requests.post(url , json=request.get_json() , cookies=request.cookies)
         headers = exclude_headers(response)
 
         f_response = Response(response.content , response.status_code , headers)
@@ -28,13 +27,14 @@ def post_handler(url : str) -> Response:
     except:
         # current redirected server failed 
         return Response("Internal Server Error" , 500)
+        
 def put_handler(url : str) -> Response:
-
     try:
-        response = requests.put(url , json=request.get_json())
+        response = requests.put(url , json=request.get_json(),cookies=request.cookies)
         headers = exclude_headers(response)
         f_response = Response(response.content , response.status_code , headers)
         return f_response
+
     except:
         # current redirected server failed 
         return Response("Internal Server Error" , 500)
@@ -42,7 +42,7 @@ def put_handler(url : str) -> Response:
 def delete_handler(url : str) -> Response:
 
     try:
-        response = requests.delete(url , json=request.get_json())
+        response = requests.delete(url , json=request.get_json() , request=request.cookies)
         headers = exclude_headers(response)
         f_response = Response(response.content , response.status_code , headers)
         return f_response
