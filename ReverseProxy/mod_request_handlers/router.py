@@ -15,7 +15,7 @@ l_balancer = BalancerAlgo()
 #handle all request with different path and seperate handler for each method
 @request_handlers.route("/<path:path>" , methods=HTTP_CONFIG["allowed_methods"])
 @request_handlers.route("/",methods=HTTP_CONFIG["allowed_methods"])
-def request_handler(path : str ="/") -> Response:
+def request_handler(path : str ="") -> Response:
 
     # Trained Ml models to block requests if they are malicious
     if HTTP_CONFIG["block_bad_useragents"] :
@@ -28,14 +28,13 @@ def request_handler(path : str ="/") -> Response:
         is_malicious_req = block_badrequests(request)     # layer2
 
         if is_malicious_req:
-            pass
-
-
+            return Response("Request Blocked",500)
 
     server_name = l_balancer.balance()
 
-    real_url = f"{server_name}{path}"
+    real_url = f"{server_name}/{path}"
 
+    print(f"[+]Requesting : {real_url}")
     # routing to particular http method controller
     if request.method == "GET":
         return get_handler(real_url)

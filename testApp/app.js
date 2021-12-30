@@ -21,13 +21,22 @@ app.use((req,res,next)=>{
 
 
 app.get("/",(req,res)=>{
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+    console.log(fullUrl)
+
+
     return res.end("<h1>get request</h1>")
 })
 
 app.post("/",(req,res)=>{
 
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+    console.log(fullUrl)
+
     console.log(req.body)
-    return "<html>POST REQUEST</html>"
+    return res.end("<html>POST REQUEST</html>")
 })
 
 app.listen(process.env.PORT , ()=>{
