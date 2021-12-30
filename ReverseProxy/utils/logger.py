@@ -9,6 +9,7 @@ class BlasterLogger:
                 log_level = logging.INFO 
                 ) -> None:
         self.logger = logging.getLogger(logger_name)
+        self.logger.propagate = False   
 
         formatter = logging.Formatter(log_format)
         fileHandler = logging.FileHandler(log_file, mode='a')
@@ -18,4 +19,4 @@ class BlasterLogger:
 
         self.logger.setLevel(log_level)
         self.logger.addHandler(fileHandler)
-        self.logger.addHandler(streamHandler)    
+        self.logger.addHandler(streamHandler) 

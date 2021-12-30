@@ -19,6 +19,14 @@ app.use((req,res,next)=>{
     next()
 })
 
+app.get("/login" , (req,res)=>{
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+    console.log(fullUrl)
+
+
+    return res.end("<h1>Login Page</h1>")
+})
 
 app.get("/",(req,res)=>{
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;

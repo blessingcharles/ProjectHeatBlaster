@@ -5,9 +5,9 @@ from .logger import BlasterLogger
 
 # loggers initialisation
 info_logger = BlasterLogger("info_logger", LOGFILE_CONFIG["info_logfilepath"])
-warning_logger = BlasterLogger("warning_logger", LOGFILE_CONFIG["error_logfilepath"] ,log_level=logging.ERROR)
+warning_logger = BlasterLogger("warning_logger", LOGFILE_CONFIG["warning_logfilepath"] ,log_level=logging.ERROR)
 error_logger = BlasterLogger("error_logger", LOGFILE_CONFIG["error_logfilepath"] ,log_level=logging.ERROR)
-critical_logger = BlasterLogger("error_logger", LOGFILE_CONFIG["error_logfilepath"] ,log_level=logging.ERROR)
+critical_logger = BlasterLogger("error_logger", LOGFILE_CONFIG["critical_logfilepath"] ,log_level=logging.ERROR)
 
 def loginfo(msg : str)-> None:
     info_logger.logger.log(logging.INFO,msg)
