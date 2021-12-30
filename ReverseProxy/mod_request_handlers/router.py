@@ -1,6 +1,6 @@
 from logging import critical
 import logging
-from flask import Flask , Blueprint ,request , Response
+from flask import Flask , Blueprint ,request , Response , make_response , render_template
 from ReverseProxy.load_balancer.balancer_algo import BalancerAlgo 
 from ReverseProxy.mod_roaster.bad_requests import block_badrequests
 from ReverseProxy.mod_roaster.bad_useragents import block_baduseragents
@@ -9,7 +9,6 @@ from ReverseProxy.utils import logcritical, loginfo
 from env.http_config import HTTP_CONFIG
 from ReverseProxy.mod_request_handlers.controller import *
 from env.proxy_config import UPSTREAM_BACKENDSERVERS
-from ReverseProxy.utils import critical_logger
 
 request_handlers = Blueprint('request_handlers',__name__,url_prefix="")
 
@@ -25,21 +24,25 @@ def request_handler(path : str ="") -> Response:
     real_url = f"{server_name}/{path}"
 
     # Trained Ml models to block requests if they are malicious
+    
+    """
+        Layer 1 -------> User Agent Roaster
+        Layer 2 -------> Payload Roaster
+    """
+
     if HTTP_CONFIG["block_bad_useragents"] :
         is_bad_ua = block_baduseragents(request)   # layer1
 
         if is_bad_ua:
-            # logcritical(f"\nLayer1 Blast |URL : {real_url} |  |METHOD : {request.method} |Ip : {request.remote_addr}")
-            critical_logger.logger.log(logging.CRITICAL ,"\nLayer1 Blast |URL : {real_url} |  |METHOD : {request.method} |Ip : {request.remote_addr}" )
-            
-            return Response("Request Blocked",403)
+            logcritical(f"\nLayer1 Blasted |URL : {real_url} |  |METHOD : {request.method} |Ip : {request.remote_addr}|User-Agent : {request.headers['User-Agent']}")            
+            return make_response(render_template("blocked.html"),200,{})
     
     if HTTP_CONFIG["block_malicious_payloads"] :
         is_malicious_req = block_badrequests(request)     # layer2
 
         if is_malicious_req:
-            logcritical(f"\nLayer2 Blast |URL : {real_url} |  |METHOD : {request.method} |Ip : {request.remote_addr} ")
-            return Response("Request Blocked",403)
+            logcritical(f"\nLayer2 Blasted |URL : {real_url} |  |METHOD : {request.method} |Ip : {request.remote_addr} ")
+            return make_response(render_template("blocked.html"),200,{})
 
 
     

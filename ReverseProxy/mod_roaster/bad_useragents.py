@@ -13,7 +13,6 @@ with open(file_path , "rb") as f:
     model = joblib.load(f)
 
 def block_baduseragents(request : Request):
-    
     try:
         result = model.predict([request.headers["User-Agent"]])        
         return result[0]
