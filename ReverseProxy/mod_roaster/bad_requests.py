@@ -9,13 +9,9 @@ from env.proxy_config import ROASTING_ML_MODELS
 from ReverseProxy.utils.util import process_ua 
 from heatblaster.utils import extract_feature
 
-file_path1 = PAYLOADS_FILE_PATH + "/" + PAYLOADS_ML_MODEL[ROASTING_ML_MODELS["payloads"]]
-file_path2 = PAYLOADS_FILE_PATH + "/" + "rf_feature_model.pkl"
+file_path = PAYLOADS_FILE_PATH + "/" + PAYLOADS_ML_MODEL[ROASTING_ML_MODELS["payloads"]]
 
-with open(file_path1 , "rb") as f:
-    model = joblib.load(f)
-
-with open(file_path2 , "rb") as f:
+with open(file_path , "rb") as f:
     custom_feature_model = joblib.load(f)
 
 

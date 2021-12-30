@@ -27,11 +27,11 @@ PAYLOADS_ML_MODEL = {
 
     # feature models
 
-    "LogisticRegressionCustomFeature":"lg_cv_pipe.pkl",
-    "SupportVectorClassifierCustomFeature":"svc_cv_pipe.pkl",
-    "KnearestNeighboursCustomFeature":"knn_cv_pipe.pkl",
-    "DecisionTreeClassifierCustomFeature":"dtc_cv_pipe.pkl",
-    "MultinomialNaiveBayes":"mnb_cv_pipe.pkl"  ,
-    "RandomForest":"rfc_cv_pipe.pkl",
+    "LogisticRegressionCustomFeature":"lg_feature_model.pkl",
+    "SupportVectorClassifierCustomFeature":"svc_feature_model.pkl",
+    "KnearestNeighboursCustomFeature":"knn_feature_model.pkl",
+    "DecisionTreeClassifierCustomFeature":"dtc_feature_model.pkl",
+    "MultinomialNaiveBayesCustomFeature":"mnb_feature_model.pkl"  ,
+    "RandomForestCustomFeature":"rfc_feature_model.pkl",
 
 }

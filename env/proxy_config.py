@@ -7,7 +7,7 @@ LOGFILE_CONFIG = {
 
 ROASTING_ML_MODELS = {
     "user-agents":"SupportVectorClassifier",
-    "payloads":"LogisticRegression"
+    "payloads":"MultinomialNaiveBayesCustomFeature"
 }
 
 UPSTREAM_BACKENDSERVERS = [ 
