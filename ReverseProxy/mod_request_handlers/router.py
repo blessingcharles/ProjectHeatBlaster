@@ -34,21 +34,31 @@ def request_handler(path : str ="") -> Response:
         is_bad_ua = block_baduseragents(request)   # layer1
 
         if is_bad_ua:
-            logcritical(f"\nLayer1 Blasted |URL : {real_url} |  |METHOD : {request.method} |Ip : {request.remote_addr}|User-Agent : {request.headers['User-Agent']}")            
-            return make_response(render_template("blocked.html"),200,{})
+            
+            logcritical(f"\nLayer1 Blasted |URL : {real_url} |  |METHOD : {request.method} |Ip : {request.remote_addr}|User-Agent : {request.headers['User-Agent']} ")            
+            
+            return make_response(render_template("blocked.html")
+                            ,HTTP_CONFIG["blocked_status_code"]
+                            ,HTTP_CONFIG["blocked_response_headers"])
     
     if HTTP_CONFIG["block_malicious_payloads"] :
+        print("#########################\n\n")
         is_malicious_req = block_badrequests(request)     # layer2
 
         if is_malicious_req:
+            
             logcritical(f"\nLayer2 Blasted |URL : {real_url} |  |METHOD : {request.method} |Ip : {request.remote_addr} ")
-            return make_response(render_template("blocked.html"),200,{})
+            
+            return make_response(render_template("blocked.html")
+                                    ,HTTP_CONFIG["blocked_status_code"]
+                                    ,HTTP_CONFIG["blocked_response_headers"])
 
 
     
     loginfo(f"\nURL : {real_url} |  |METHOD : {request.method} |Ip : {request.remote_addr}")
 
     print(f"[+]Requesting : {real_url}")
+
     # routing to particular http method controller
     if request.method == "GET":
         return get_handler(real_url)

@@ -29,7 +29,7 @@ def block_badrequests(request : Request):
                 for _ , v in request.json.items():
                     args_str += v + " "
 
-            elif request.headers["Content-Type"].lower() == "multipart/form-data": 
+            elif request.headers["Content-Type"].lower() == "multipart/form-data" or request.headers["Content-Type"].lower() == "application/x-www-form-urlencoded": 
                 for _ , v in request.form.items():
                     args_str += v + " "
             else:

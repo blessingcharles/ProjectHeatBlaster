@@ -25,7 +25,7 @@ app.get("/login" , (req,res)=>{
     console.log(fullUrl)
 
 
-    return res.end("<h1>Login Page</h1>")
+    return res.sendFile(__dirname + "/pages/login.html")
 })
 
 app.get("/",(req,res)=>{
@@ -34,17 +34,17 @@ app.get("/",(req,res)=>{
     console.log(fullUrl)
 
 
-    return res.end("<h1>get request</h1>")
+    return res.sendFile(__dirname + "/pages/home.html")
 })
 
-app.post("/",(req,res)=>{
+app.post("/submit_login",(req,res)=>{
 
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
     console.log(fullUrl)
 
     console.log(req.body)
-    return res.end("<html>POST REQUEST</html>")
+    return res.end("<html>Sucessfully Logged in</html>")
 })
 
 app.listen(process.env.PORT , ()=>{
