@@ -7,7 +7,6 @@ from ReverseProxy.mod_request_handlers.utils import exclude_headers
 def get_handler(url : str) -> Response:
     try:
         response = requests.get(url , cookies=request.cookies)
-        print(url)
         headers = exclude_headers(response)
         f_response = Response(response.content , response.status_code , headers)
         return f_response

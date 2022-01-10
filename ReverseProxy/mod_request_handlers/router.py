@@ -22,7 +22,6 @@ def request_handler(path : str ="") -> Response:
 
     server_name = l_balancer.balance()
     real_url = f"{server_name}/{path}"
-
     # Trained Ml models to block requests if they are malicious
     
     """
@@ -42,7 +41,6 @@ def request_handler(path : str ="") -> Response:
                             ,HTTP_CONFIG["blocked_response_headers"])
     
     if HTTP_CONFIG["block_malicious_payloads"] :
-        print("#########################\n\n")
         is_malicious_req = block_badrequests(request)     # layer2
 
         if is_malicious_req:
@@ -57,7 +55,6 @@ def request_handler(path : str ="") -> Response:
     
     loginfo(f"\nURL : {real_url} |  |METHOD : {request.method} |Ip : {request.remote_addr}")
 
-    print(f"[+]Requesting : {real_url}")
 
     # routing to particular http method controller
     if request.method == "GET":
