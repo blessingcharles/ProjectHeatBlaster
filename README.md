@@ -97,19 +97,16 @@ proxy application. The classification algorithms supported are
 
 **Reverse Proxy module** :
 
-```
+
 It’s the Core module which co-operates the load balancing , routing and the
-```
+
 web application firewall where the layers of ml model presents.
 
 It further consists of sub modules
 
 ```
-1) load_balancer : contains logic of how to load balance among the backend
-```
-servers
+1) load_balancer : contains logic of how to load balance among the backend servers
 
-```
 2) mod_request_handlers : contains logic of how to route requests
 3) mod_roaster : contains the layers of web application firewall
 4) templates : html templates for the reverse proxy
@@ -120,26 +117,26 @@ HEAT BLASTERMODULE
 
 ```
 It contains all the Machine Learning Model training functions and preprocessing
-```
+
 steps in jupyter notebook. From here only ml models are dumped using joblib library
 
 , then they are loaded into reverse proxy according to environmental configurations
 
 mentioned by the developer.
-
+```
 ### BlasterDb :
 
 ```
 It contains all the data needed for the reverse proxy , which actually acts
-```
 similar to database to all the modules.
+```
 
 ### ENV :
 
 ```
 It contains all the environment variables for configuring the reverse proxy , the
-```
 configs are httpconfig , proxyconfig , mlconfig , serverconfig.
+```
 
 ### Blaster Models :
 
