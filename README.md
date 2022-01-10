@@ -3,6 +3,11 @@
 
   Heat Blaster is a reverse proxy which can act as a load balancer and web application firewall , which is powered by the ML model to detect malicious http requests and prevent it by reaching the backend servers. The web application firewall is developed in a layered architecture , each layer has a ML model which has its own functionality to analyse the http request and forward it to the next layer. As the WAF follows layered architecture so we can enable or disable any layer according to our wish. The proxy server also logs both normal and malicious request information in log files for future analysis. The load balancer in the reverse proxy is implemented in round robin fashion and it also keeps a log file for uptime for each backend server.
 
+
+```
+  More info contact : https://twitter.com/th3h04x
+```
+
 ### BLOCK DIAGRAM
 ![block diagram](https://github.com/blessingcharles/ProjectHeatBlaster/blob/Main/pngs/block%20diagram.png?raw=true)
 
@@ -254,9 +259,6 @@ https://github.com/blessingcharles/ProjectHeatBlaster
 ### Model Evaluation Metrics 
 ##### all evaluation metrics can be found in heatblaster directory (jupyter notebooks) 
 
-```
-  More info contact : https://twitter.com/th3h04x
-```
 
 ## REFERENCE PAPERS
 
